@@ -32,6 +32,11 @@ public:
     QPushButton *openButton;
     QLabel *labelPath;
     QListWidget *imageList;
+    QLabel *label;
+    QPushButton *processButton;
+    QLabel *labelImage;
+    QPushButton *prevButton;
+    QPushButton *nextButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -45,13 +50,29 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         openButton = new QPushButton(centralWidget);
         openButton->setObjectName(QStringLiteral("openButton"));
-        openButton->setGeometry(QRect(70, 30, 93, 28));
+        openButton->setGeometry(QRect(60, 30, 261, 61));
         labelPath = new QLabel(centralWidget);
         labelPath->setObjectName(QStringLiteral("labelPath"));
-        labelPath->setGeometry(QRect(190, 30, 421, 31));
+        labelPath->setGeometry(QRect(60, 110, 261, 31));
         imageList = new QListWidget(centralWidget);
         imageList->setObjectName(QStringLiteral("imageList"));
-        imageList->setGeometry(QRect(120, 80, 256, 192));
+        imageList->setGeometry(QRect(60, 170, 256, 341));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(630, 100, 161, 61));
+        processButton = new QPushButton(centralWidget);
+        processButton->setObjectName(QStringLiteral("processButton"));
+        processButton->setGeometry(QRect(522, 27, 281, 61));
+        labelImage = new QLabel(centralWidget);
+        labelImage->setObjectName(QStringLiteral("labelImage"));
+        labelImage->setGeometry(QRect(530, 170, 261, 311));
+        labelImage->setMaximumSize(QSize(261, 311));
+        prevButton = new QPushButton(centralWidget);
+        prevButton->setObjectName(QStringLiteral("prevButton"));
+        prevButton->setGeometry(QRect(550, 500, 93, 28));
+        nextButton = new QPushButton(centralWidget);
+        nextButton->setObjectName(QStringLiteral("nextButton"));
+        nextButton->setGeometry(QRect(680, 500, 93, 28));
         goodClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(goodClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -66,6 +87,8 @@ public:
 
         retranslateUi(goodClass);
         QObject::connect(openButton, SIGNAL(clicked()), goodClass, SLOT(openButton()));
+        QObject::connect(prevButton, SIGNAL(clicked()), goodClass, SLOT(prevImage()));
+        QObject::connect(nextButton, SIGNAL(clicked()), goodClass, SLOT(nextImage()));
 
         QMetaObject::connectSlotsByName(goodClass);
     } // setupUi
@@ -75,6 +98,11 @@ public:
         goodClass->setWindowTitle(QApplication::translate("goodClass", "good", nullptr));
         openButton->setText(QApplication::translate("goodClass", "Open", nullptr));
         labelPath->setText(QApplication::translate("goodClass", "\355\217\264\353\215\224\353\245\274 \354\236\205\353\240\245\355\225\230\354\204\270\354\232\224.", nullptr));
+        label->setText(QApplication::translate("goodClass", "\354\213\244\355\226\211 \352\262\260\352\263\274", nullptr));
+        processButton->setText(QApplication::translate("goodClass", "\354\213\244\355\226\211", nullptr));
+        labelImage->setText(QString());
+        prevButton->setText(QApplication::translate("goodClass", "\354\235\264\354\240\204", nullptr));
+        nextButton->setText(QApplication::translate("goodClass", "\353\213\244\354\235\214", nullptr));
     } // retranslateUi
 
 };

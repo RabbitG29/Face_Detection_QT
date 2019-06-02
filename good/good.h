@@ -19,4 +19,7 @@ private:
 	Ui::goodClass ui;
 	private slots:
 	void openButton();
+	void displayImage();
+	void prevImage();
+	void nextImage();
 };
