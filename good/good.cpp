@@ -57,3 +57,7 @@ void good::nextImage() {
 		index++;
 	displayImage();
 }
+void good::selectedImage() {
+	index = ui.imageList->currentRow();
+	displayImage();
+}

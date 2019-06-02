@@ -22,4 +22,5 @@ private:
 	void displayImage();
 	void prevImage();
 	void nextImage();
+	void selectedImage();
 };

@@ -89,6 +89,7 @@ public:
         QObject::connect(openButton, SIGNAL(clicked()), goodClass, SLOT(openButton()));
         QObject::connect(prevButton, SIGNAL(clicked()), goodClass, SLOT(prevImage()));
         QObject::connect(nextButton, SIGNAL(clicked()), goodClass, SLOT(nextImage()));
+        QObject::connect(imageList, SIGNAL(currentRowChanged(int)), goodClass, SLOT(selectedImage()));
 
         QMetaObject::connectSlotsByName(goodClass);
     } // setupUi
