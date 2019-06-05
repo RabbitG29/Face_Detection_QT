@@ -23,4 +23,5 @@ private:
 	void prevImage();
 	void nextImage();
 	void selectedImage();
+	void processButton();
 };

@@ -36,9 +36,15 @@
     <ClCompile Include="good.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="good.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Result.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -46,9 +52,15 @@
     <QtUic Include="good.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="Result.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="good.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtRcc Include="Result.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>
