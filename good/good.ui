@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>923</width>
+    <width>959</width>
     <height>651</height>
    </rect>
   </property>
@@ -205,13 +205,75 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="labelPathR2">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>460</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>결과 저장 디렉토리 : </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nextButton2">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>510</y>
+      <width>81</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>다음</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="prevButton2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>510</y>
+      <width>81</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>이전</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="resultList">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>120</y>
+      <width>171</width>
+      <height>321</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelPathR">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>460</y>
+      <width>341</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>923</width>
+     <width>959</width>
      <height>26</height>
     </rect>
    </property>
@@ -254,8 +316,8 @@
    <slot>prevImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>580</x>
-     <y>554</y>
+     <x>80</x>
+     <y>594</y>
     </hint>
     <hint type="destinationlabel">
      <x>591</x>
@@ -270,8 +332,8 @@
    <slot>nextImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>733</x>
-     <y>555</y>
+     <x>170</x>
+     <y>595</y>
     </hint>
     <hint type="destinationlabel">
      <x>752</x>
@@ -286,8 +348,8 @@
    <slot>selectedImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>215</x>
-     <y>394</y>
+     <x>170</x>
+     <y>434</y>
     </hint>
     <hint type="destinationlabel">
      <x>357</x>
@@ -302,12 +364,60 @@
    <slot>processButton()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>727</x>
-     <y>114</y>
+     <x>770</x>
+     <y>100</y>
     </hint>
     <hint type="destinationlabel">
      <x>825</x>
      <y>138</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>prevButton2</sender>
+   <signal>clicked()</signal>
+   <receiver>goodClass</receiver>
+   <slot>prevImage2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>566</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>400</x>
+     <y>606</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nextButton2</sender>
+   <signal>clicked()</signal>
+   <receiver>goodClass</receiver>
+   <slot>nextImage2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>504</x>
+     <y>566</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>518</x>
+     <y>616</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>resultList</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>goodClass</receiver>
+   <slot>selectedImage2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>873</x>
+     <y>416</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>903</x>
+     <y>526</y>
     </hint>
    </hints>
   </connection>
@@ -319,5 +429,8 @@
   <slot>nextImage()</slot>
   <slot>selectedImage()</slot>
   <slot>processButton()</slot>
+  <slot>nextImage2()</slot>
+  <slot>prevImage2()</slot>
+  <slot>selectedImage2()</slot>
  </slots>
 </ui>

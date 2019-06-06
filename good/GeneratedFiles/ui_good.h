@@ -44,6 +44,11 @@ public:
     QCheckBox *checkBox_man;
     QCheckBox *checkBox_face;
     QLabel *labelImage;
+    QLabel *labelPathR2;
+    QPushButton *nextButton2;
+    QPushButton *prevButton2;
+    QListWidget *resultList;
+    QLabel *labelPathR;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -52,7 +57,7 @@ public:
     {
         if (goodClass->objectName().isEmpty())
             goodClass->setObjectName(QStringLiteral("goodClass"));
-        goodClass->resize(923, 651);
+        goodClass->resize(959, 651);
         centralWidget = new QWidget(goodClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         openButton = new QPushButton(centralWidget);
@@ -99,10 +104,25 @@ public:
         labelImage->setObjectName(QStringLiteral("labelImage"));
         labelImage->setGeometry(QRect(0, 460, 170, 80));
         labelImage->setMaximumSize(QSize(170, 80));
+        labelPathR2 = new QLabel(centralWidget);
+        labelPathR2->setObjectName(QStringLiteral("labelPathR2"));
+        labelPathR2->setGeometry(QRect(230, 460, 161, 16));
+        nextButton2 = new QPushButton(centralWidget);
+        nextButton2->setObjectName(QStringLiteral("nextButton2"));
+        nextButton2->setGeometry(QRect(450, 510, 81, 28));
+        prevButton2 = new QPushButton(centralWidget);
+        prevButton2->setObjectName(QStringLiteral("prevButton2"));
+        prevButton2->setGeometry(QRect(360, 510, 81, 28));
+        resultList = new QListWidget(centralWidget);
+        resultList->setObjectName(QStringLiteral("resultList"));
+        resultList->setGeometry(QRect(750, 120, 171, 321));
+        labelPathR = new QLabel(centralWidget);
+        labelPathR->setObjectName(QStringLiteral("labelPathR"));
+        labelPathR->setGeometry(QRect(380, 460, 341, 16));
         goodClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(goodClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 923, 26));
+        menuBar->setGeometry(QRect(0, 0, 959, 26));
         goodClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(goodClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -117,6 +137,9 @@ public:
         QObject::connect(nextButton, SIGNAL(clicked()), goodClass, SLOT(nextImage()));
         QObject::connect(imageList, SIGNAL(currentRowChanged(int)), goodClass, SLOT(selectedImage()));
         QObject::connect(processButton, SIGNAL(clicked()), goodClass, SLOT(processButton()));
+        QObject::connect(prevButton2, SIGNAL(clicked()), goodClass, SLOT(prevImage2()));
+        QObject::connect(nextButton2, SIGNAL(clicked()), goodClass, SLOT(nextImage2()));
+        QObject::connect(resultList, SIGNAL(currentRowChanged(int)), goodClass, SLOT(selectedImage2()));
 
         QMetaObject::connectSlotsByName(goodClass);
     } // setupUi
@@ -137,6 +160,10 @@ public:
         checkBox_man->setText(QApplication::translate("goodClass", "\354\202\254\353\236\214", nullptr));
         checkBox_face->setText(QApplication::translate("goodClass", "\354\226\274\352\265\264", nullptr));
         labelImage->setText(QString());
+        labelPathR2->setText(QApplication::translate("goodClass", "\352\262\260\352\263\274 \354\240\200\354\236\245 \353\224\224\353\240\211\355\206\240\353\246\254 : ", nullptr));
+        nextButton2->setText(QApplication::translate("goodClass", "\353\213\244\354\235\214", nullptr));
+        prevButton2->setText(QApplication::translate("goodClass", "\354\235\264\354\240\204", nullptr));
+        labelPathR->setText(QString());
     } // retranslateUi
 
 };

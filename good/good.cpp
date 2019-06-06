@@ -1,5 +1,6 @@
+#include <Windows.h>
 #include "good.h"
-#include "Result.h"
+#include <fileapi.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,12 +21,16 @@ using namespace std;
 using namespace cv;
 
 QFileInfoList fileinfolist;
+QFileInfoList fileinfolist2;
 QString save_lot;
+QString result_lot;
 int index = 0;
+int index2 = 0;
 double ticks = getTickFrequency();
 int64 t0;
 
-//TODO : 실행 버튼 눌렀을 때 결과만 띄워주면 됨
+//TODO : 파일 출력하기(../result 폴더 새로 생성)
+//TODO2 : 출력한 파일 리스트에 담아서 보여주기
 
 good::good(QWidget *parent)
 	: QMainWindow(parent)
@@ -59,6 +64,14 @@ void good::displayImage() {
 	ui.labelImage->setPixmap(buf);
 	ui.labelImage->resize(buf.width(), buf.height());
 }
+void good::displayImage2() {
+	QString img_path = result_lot + "/" + fileinfolist2[index].fileName();
+	QImage img(img_path);
+	QPixmap buf = QPixmap::fromImage(img.scaled(ui.image_result->width(), ui.image_result->height()));
+	//buf.scaled(img.width()/4, img.height()/4);
+	ui.image_result->setPixmap(buf);
+	ui.image_result->resize(buf.width(), buf.height());
+}
 
 void good::prevImage() {
 	if (index > 0)
@@ -70,9 +83,23 @@ void good::nextImage() {
 		index++;
 	displayImage();
 }
+void good::prevImage2() {
+	if (index2 > 0)
+		index2--;
+	displayImage2();
+}
+void good::nextImage2() {
+	if (index2 < fileinfolist2.length() - 1)
+		index2++;
+	displayImage2();
+}
 void good::selectedImage() {
 	index = ui.imageList->currentRow();
 	displayImage();
+}
+void good::selectedImage2() {
+	index2 = ui.resultList->currentRow();
+	displayImage2();
 }
 void good::processButton() {
 	bool check_face = ui.checkBox_face->isChecked();
@@ -85,10 +112,29 @@ void good::processButton() {
 		msg.exec();
 		return;
 	}
-
+	QDir source, resultD;
+	source.setPath(save_lot);
+	resultD = source;
+	resultD.cdUp();
 	string img_dir = save_lot.toStdString() + '/';
+	string result_dir = resultD.absolutePath().toStdString() + "/result";
+	wstring temp = wstring(result_dir.begin(), result_dir.end());
+	CreateDirectory(temp.c_str(), NULL);
 
+	result_lot = result_lot.fromStdString(result_dir);
+	resultD.setPath(result_lot);
+	ui.labelPathR->setText(result_lot);
+	/*QMessageBox msg;
+	msg.setText("실행합니다.");
+	msg.exec();*/
+	
+	result_dir += '/';
+	int count = 0;
 	for (auto file : fileinfolist) {
+		count++;
+		if (count == 2)
+			break;
+		
 		string img_path = img_dir + file.fileName().toStdString();
 		Mat img = imread(img_path);
 
@@ -126,12 +172,20 @@ void good::processButton() {
 			for (int i = 0; i < faces.size(); i++)
 				rectangle(img, cars[i], Scalar(0, 0, 255), 2, 1);
 		}
-
+		imwrite(result_dir + file.fileName().toStdString(), img);
 		cvtColor(img, img, COLOR_BGR2RGB);
 		QPixmap p = QPixmap::fromImage(QImage((unsigned char*)img.data, img.cols, img.rows, QImage::Format_RGB888).scaled(ui.image_result->width(), ui.image_result->height()));
 		ui.image_result->setPixmap(p);
 		//ui.image_result->resize(img.cols, img.rows);
-		ui.image_result->resize(p.width(), p.height());
-		break;
+		ui.image_result->resize(p.width(), p.height());	
 	}
+
+	QStringList filters2;
+	filters2 << "*.png" << "*.jpg" << "*.bmp";
+	fileinfolist2.clear();
+	fileinfolist2 = resultD.entryInfoList(filters2, QDir::Files | QDir::NoDotAndDotDot);
+	ui.resultList->clear();
+	for (auto file : fileinfolist2)
+		ui.resultList->addItem(file.fileName());
+	displayImage2();
 }
