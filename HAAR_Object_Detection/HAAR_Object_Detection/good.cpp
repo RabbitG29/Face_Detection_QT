@@ -29,8 +29,8 @@ int index2 = 0;
 double ticks = getTickFrequency();
 int64 t0;
 
-//TODO : ÆÄÀÏ Ãâ·ÂÇÏ±â(../result Æú´õ »õ·Î »ý¼º)
-//TODO2 : Ãâ·ÂÇÑ ÆÄÀÏ ¸®½ºÆ®¿¡ ´ã¾Æ¼­ º¸¿©ÁÖ±â
+//TODO : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½(../result ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+//TODO2 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 
 good::good(QWidget *parent)
 	: QMainWindow(parent)
@@ -57,7 +57,7 @@ void good::openButton() {
 }
 
 void good::displayImage() {
-	QString img_path = save_lot + "/" + fileinfolist[index].fileName();
+	QString img_path = save_lot + "/" + fileinfolist[index2].fileName();
 	QImage img(img_path);
 	QPixmap buf = QPixmap::fromImage(img.scaled(ui.labelImage->width(), ui.labelImage->height()));
 	//buf.scaled(img.width()/4, img.height()/4);
@@ -65,7 +65,7 @@ void good::displayImage() {
 	ui.labelImage->resize(buf.width(), buf.height());
 }
 void good::displayImage2() {
-	QString img_path = result_lot + "/" + fileinfolist2[index].fileName();
+	QString img_path = result_lot + "/" + fileinfolist2[index2].fileName();
 	QImage img(img_path);
 	QPixmap buf = QPixmap::fromImage(img.scaled(ui.image_result->width(), ui.image_result->height()));
 	//buf.scaled(img.width()/4, img.height()/4);
@@ -125,7 +125,7 @@ void good::processButton() {
 	resultD.setPath(result_lot);
 	ui.labelPathR->setText(result_lot);
 	/*QMessageBox msg;
-	msg.setText("½ÇÇàÇÕ´Ï´Ù.");
+	msg.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 	msg.exec();*/
 	
 	result_dir += '/';
@@ -142,7 +142,7 @@ void good::processButton() {
 
 		if (check_face) {
 			CascadeClassifier face_cascade;
-			face_cascade.load("xml/cascade10.xml");
+			face_cascade.load("xml/cascade8.xml");
 			t0 = getTickCount();
 			face_cascade.detectMultiScale(img, faces, 1.3, 3, 0 | CASCADE_SCALE_IMAGE);
 			t0 = getTickCount() - t0;
@@ -170,6 +170,8 @@ void good::processButton() {
 			for (int i = 0; i < faces.size(); i++)
 				rectangle(img, cars[i], Scalar(0, 0, 255), 2, 1);
 		}
+
+		// double time = t0 * 1e3; // -> time (ms)
 
 		imwrite(result_dir + file.fileName().toStdString(), img);
 		cvtColor(img, img, COLOR_BGR2RGB);
