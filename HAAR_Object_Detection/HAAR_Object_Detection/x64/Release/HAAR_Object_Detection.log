@@ -1,0 +1,2 @@
+﻿  good.cpp
+LINK : fatal error LNK1104: 'C:\Users\HYUNHO\source\repos\HAAR_Object_Detection\x64\Release\\HAAR_Object_Detection.exe' 파일을 열 수 없습니다.
