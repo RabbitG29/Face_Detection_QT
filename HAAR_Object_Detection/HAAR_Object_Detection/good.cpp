@@ -29,8 +29,8 @@ int index2 = 0;
 double ticks = getTickFrequency();
 int64 t0;
 
-//TODO : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½(../result ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
-//TODO2 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
+//TODO : ÆÄÀÏ Ãâ·ÂÇÏ±â(../result Æú´õ »õ·Î »ý¼º)
+//TODO2 : Ãâ·ÂÇÑ ÆÄÀÏ ¸®½ºÆ®¿¡ ´ã¾Æ¼­ º¸¿©ÁÖ±â
 
 good::good(QWidget *parent)
 	: QMainWindow(parent)
@@ -57,7 +57,7 @@ void good::openButton() {
 }
 
 void good::displayImage() {
-	QString img_path = save_lot + "/" + fileinfolist[index2].fileName();
+	QString img_path = save_lot + "/" + fileinfolist[index].fileName();
 	QImage img(img_path);
 	QPixmap buf = QPixmap::fromImage(img.scaled(ui.labelImage->width(), ui.labelImage->height()));
 	//buf.scaled(img.width()/4, img.height()/4);
@@ -125,7 +125,7 @@ void good::processButton() {
 	resultD.setPath(result_lot);
 	ui.labelPathR->setText(result_lot);
 	/*QMessageBox msg;
-	msg.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
+	msg.setText("½ÇÇàÇÕ´Ï´Ù.");
 	msg.exec();*/
 	
 	result_dir += '/';
@@ -171,14 +171,13 @@ void good::processButton() {
 				rectangle(img, cars[i], Scalar(0, 0, 255), 2, 1);
 		}
 
-		// double time = t0 * 1e3; // -> time (ms)
+		//double time = t0 * 1e3; // time(ms)
 
 		imwrite(result_dir + file.fileName().toStdString(), img);
-		cvtColor(img, img, COLOR_BGR2RGB);
-		QPixmap p = QPixmap::fromImage(QImage((unsigned char*)img.data, img.cols, img.rows, QImage::Format_RGB888).scaled(ui.image_result->width(), ui.image_result->height()));
-		ui.image_result->setPixmap(p);
-		ui.image_result->resize(p.width(), p.height());	
 	}
+	QMessageBox msg;
+	msg.setText("finish!");
+	msg.exec();
 
 	QStringList filters2;
 	filters2 << "*.png" << "*.jpg" << "*.bmp";
