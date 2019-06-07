@@ -152,7 +152,7 @@ void good::processButton() {
 		}
 		if (check_man) {
 			CascadeClassifier man_cascade;
-			man_cascade.load("xml/cascade_man.xml");
+			man_cascade.load("xml/cascade_car1.xml");
 			t0 = getTickCount();
 			man_cascade.detectMultiScale(img, mans, 1.3, 3, 0 | CASCADE_SCALE_IMAGE);
 			t0 = getTickCount() - t0;
