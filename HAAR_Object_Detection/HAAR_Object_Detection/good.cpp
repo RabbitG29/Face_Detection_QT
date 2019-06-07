@@ -28,9 +28,10 @@ int index = 0;
 int index2 = 0;
 double ticks = getTickFrequency();
 int64 t0;
+vector<double> vec_time;
 
-//TODO : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½(../result ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
-//TODO2 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
+//TODO : ÆÄÀÏ Ãâ·ÂÇÏ±â(../result Æú´õ »õ·Î »ý¼º)
+//TODO2 : Ãâ·ÂÇÑ ÆÄÀÏ ¸®½ºÆ®¿¡ ´ã¾Æ¼­ º¸¿©ÁÖ±â
 
 good::good(QWidget *parent)
 	: QMainWindow(parent)
@@ -71,6 +72,7 @@ void good::displayImage2() {
 	//buf.scaled(img.width()/4, img.height()/4);
 	ui.image_result->setPixmap(buf);
 	ui.image_result->resize(buf.width(), buf.height());
+	ui.label_time->setText(QString::number(vec_time[index2]));
 }
 
 void good::prevImage() {
@@ -125,7 +127,7 @@ void good::processButton() {
 	resultD.setPath(result_lot);
 	ui.labelPathR->setText(result_lot);
 	/*QMessageBox msg;
-	msg.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
+	msg.setText("½ÇÇàÇÕ´Ï´Ù.");
 	msg.exec();*/
 	
 	result_dir += '/';
@@ -142,7 +144,7 @@ void good::processButton() {
 
 		if (check_face) {
 			CascadeClassifier face_cascade;
-			face_cascade.load("xml/cascade8.xml");
+			face_cascade.load("xml/cascade9.xml");
 			t0 = getTickCount();
 			face_cascade.detectMultiScale(img, faces, 1.3, 3, 0 | CASCADE_SCALE_IMAGE);
 			t0 = getTickCount() - t0;
@@ -171,7 +173,8 @@ void good::processButton() {
 				rectangle(img, cars[i], Scalar(0, 0, 255), 2, 1);
 		}
 
-		//double time = t0 * 1e3; // time(ms)
+		double time = ((double)t0 * 1000) / ticks; // time(ms)
+		vec_time.push_back(time);
 
 		imwrite(result_dir + file.fileName().toStdString(), img);
 	}

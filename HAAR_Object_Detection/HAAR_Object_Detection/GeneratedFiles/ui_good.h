@@ -49,6 +49,7 @@ public:
     QPushButton *prevButton2;
     QListWidget *resultList;
     QLabel *labelPathR;
+    QLabel *label_time;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -119,6 +120,9 @@ public:
         labelPathR = new QLabel(centralWidget);
         labelPathR->setObjectName(QStringLiteral("labelPathR"));
         labelPathR->setGeometry(QRect(380, 460, 341, 16));
+        label_time = new QLabel(centralWidget);
+        label_time->setObjectName(QStringLiteral("label_time"));
+        label_time->setGeometry(QRect(600, 520, 141, 41));
         goodClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(goodClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -164,6 +168,7 @@ public:
         nextButton2->setText(QApplication::translate("goodClass", "\353\213\244\354\235\214", nullptr));
         prevButton2->setText(QApplication::translate("goodClass", "\354\235\264\354\240\204", nullptr));
         labelPathR->setText(QString());
+        label_time->setText(QApplication::translate("goodClass", "\354\213\244\355\226\211 \354\213\234\352\260\204", nullptr));
     } // retranslateUi
 
 };
