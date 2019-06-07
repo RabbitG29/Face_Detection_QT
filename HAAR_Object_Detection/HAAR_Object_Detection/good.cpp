@@ -29,8 +29,8 @@ int index2 = 0;
 double ticks = getTickFrequency();
 int64 t0;
 
-//TODO : ÆÄÀÏ Ãâ·ÂÇÏ±â(../result Æú´õ »õ·Î »ý¼º)
-//TODO2 : Ãâ·ÂÇÑ ÆÄÀÏ ¸®½ºÆ®¿¡ ´ã¾Æ¼­ º¸¿©ÁÖ±â
+//TODO : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½(../result ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+//TODO2 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 
 good::good(QWidget *parent)
 	: QMainWindow(parent)
@@ -125,7 +125,7 @@ void good::processButton() {
 	resultD.setPath(result_lot);
 	ui.labelPathR->setText(result_lot);
 	/*QMessageBox msg;
-	msg.setText("½ÇÇàÇÕ´Ï´Ù.");
+	msg.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 	msg.exec();*/
 	
 	result_dir += '/';
