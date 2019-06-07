@@ -65,7 +65,7 @@ void good::displayImage() {
 	ui.labelImage->resize(buf.width(), buf.height());
 }
 void good::displayImage2() {
-	QString img_path = result_lot + "/" + fileinfolist2[index].fileName();
+	QString img_path = result_lot + "/" + fileinfolist2[index2].fileName();
 	QImage img(img_path);
 	QPixmap buf = QPixmap::fromImage(img.scaled(ui.image_result->width(), ui.image_result->height()));
 	//buf.scaled(img.width()/4, img.height()/4);
@@ -132,8 +132,6 @@ void good::processButton() {
 	int count = 0;
 	for (auto file : fileinfolist) {
 		count++;
-		if (count == 2)
-			break;
 		
 		string img_path = img_dir + file.fileName().toStdString();
 		Mat img = imread(img_path);
