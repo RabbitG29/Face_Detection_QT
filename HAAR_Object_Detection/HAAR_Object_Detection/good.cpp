@@ -30,8 +30,8 @@ double ticks = getTickFrequency();
 int64 t0;
 vector<double> vec_time;
 
-//TODO : ÆÄÀÏ Ãâ·ÂÇÏ±â(../result Æú´õ »õ·Î »ý¼º)
-//TODO2 : Ãâ·ÂÇÑ ÆÄÀÏ ¸®½ºÆ®¿¡ ´ã¾Æ¼­ º¸¿©ÁÖ±â
+//TODO : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½(../result ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+//TODO2 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 
 good::good(QWidget *parent)
 	: QMainWindow(parent)
@@ -127,7 +127,7 @@ void good::processButton() {
 	resultD.setPath(result_lot);
 	ui.labelPathR->setText(result_lot);
 	/*QMessageBox msg;
-	msg.setText("½ÇÇàÇÕ´Ï´Ù.");
+	msg.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 	msg.exec();*/
 	
 	result_dir += '/';
@@ -144,7 +144,7 @@ void good::processButton() {
 
 		if (check_face) {
 			CascadeClassifier face_cascade;
-			face_cascade.load("xml/cascade9.xml");
+			face_cascade.load("xml/cascade10.xml");
 			t0 = getTickCount();
 			face_cascade.detectMultiScale(img, faces, 1.3, 3, 0 | CASCADE_SCALE_IMAGE);
 			t0 = getTickCount() - t0;
@@ -154,7 +154,7 @@ void good::processButton() {
 		}
 		if (check_man) {
 			CascadeClassifier man_cascade;
-			man_cascade.load("xml/cascade_car1.xml");
+			man_cascade.load("xml/cascade_man.xml");
 			t0 = getTickCount();
 			man_cascade.detectMultiScale(img, mans, 1.3, 3, 0 | CASCADE_SCALE_IMAGE);
 			t0 = getTickCount() - t0;
@@ -164,7 +164,7 @@ void good::processButton() {
 		}
 		if (check_car) {
 			CascadeClassifier car_cascade;
-			car_cascade.load("xml/cascade_car.xml");
+			car_cascade.load("xml/cascade_car1.xml");
 			t0 = getTickCount();
 			car_cascade.detectMultiScale(img, cars, 1.3, 3, 0 | CASCADE_SCALE_IMAGE);
 			t0 = getTickCount() - t0;
